@@ -29,9 +29,24 @@ public:
         //进行状态转移
         for(int i=2; i<=N; i++){
             for(int j=2; j<=K; j++){
-                for(int k=1; k<=i; k++){
-                    dp[i][j] = min(max(dp[k-1][j-1], dp[i-k][j])+1, dp[i][j]);
+                int left = 1, right = i;
+                while(left < right){
+                    int mid = left + (right-left+1)/2;
+                    //由于breakPoint是递增的，notBreakPoint是递减的（随着mid）
+                    //我们希望得到X0，此时notBreakPoint>=breakPoint
+                    //当breakPoint偏大时，希望向左边搜索
+                    //当breakPoint偏小时，向右边搜索
+                    //最后希望聚合到左边的点-->
+                    int breakPoint = dp[mid-1][j-1];//碎了
+                    int notBreakPoint = dp[i-mid][j];//没碎
+                    if(breakPoint > notBreakPoint){
+                        right = mid - 1;//不要mid
+                    }else{
+                        left = mid;
+                    }
                 }
+                //此时left即为结果(左右一样)
+                dp[i][j] = max(dp[left-1][j-1], dp[i-left][j])+1;
             }
         }
         return dp[N][K];
