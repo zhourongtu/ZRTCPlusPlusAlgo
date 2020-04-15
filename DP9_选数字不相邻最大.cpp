@@ -28,8 +28,7 @@ int choose_maxSum(std::vector<int> &nums){
         opt2 = opt3;
     }
     return opt2;
-};
-
+}
 };
 int main()
 {
