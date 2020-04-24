@@ -7,7 +7,7 @@
 using namespace std;
 int main(){
     //直接代码法
-    string a=" ";
+    string a="zhourongtu shijia guo";
     // size_t temp=-3;
     // while((temp = a.find_first_of(' ', temp+3)) != string::npos){
     //     a.replace(temp, 1, "%20");
