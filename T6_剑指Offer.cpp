@@ -3,16 +3,20 @@
 输入二叉树的前序和中序遍历结果，重建该二叉树。
 1 2 4 7 3 5 6 8
 4 7 2 1 5 3 8 6
+
+补充:做了个类封装和友元尝试
 */
 #include <iostream>
 #include <vector>
 using namespace std;
-struct BinaryTreeNode{
+class BinaryTreeNode{
     int             m_nValue;
     BinaryTreeNode* m_pLeft;
     BinaryTreeNode* m_pRight;
+friend void in_order(BinaryTreeNode *root);
+public:
+    BinaryTreeNode* buildTreeByTwoSeq(vector<int> &preSeq, vector<int> &inSeq, int pre_left, int pre_right, int in_left, int in_right);
 };
-BinaryTreeNode* buildTreeByTwoSeq(vector<int> &preSeq, vector<int> &inSeq, int pre_left, int pre_right, int in_left, int in_right);
 void in_order(BinaryTreeNode *root);
 int main()
 {
@@ -24,22 +28,25 @@ int main()
         int temp; cin >> temp; preSeq.push_back(temp);}
     for(int i=0; i<N; i++){
         int temp; cin >> temp; inSeq.push_back(temp);}
-    BinaryTreeNode* result = buildTreeByTwoSeq(preSeq, inSeq, 0, N-1, 0, N-1);
-    cout << result->m_nValue;
+    BinaryTreeNode* temp = new BinaryTreeNode;
+    BinaryTreeNode* result = temp->buildTreeByTwoSeq(preSeq, inSeq, 0, N-1, 0, N-1);
+    // cout << "根节点的值：" << result->m_nValue << endl;
     //N已经有了返回一个根节点
+    cout << "前序遍历结果：";
     in_order(result);
+    cout << endl;
 }
 //中序遍历
 void in_order(BinaryTreeNode *root){
     if(root == NULL)return;
-    cout << root->m_nValue;
+    cout << " " << root->m_nValue;
     in_order(root->m_pLeft);
     in_order(root->m_pRight);
     return ;
 }
 
 //依据前序与中序重建二叉树
-BinaryTreeNode* buildTreeByTwoSeq(vector<int> &preSeq, vector<int> &inSeq, int pre_left, int pre_right, int in_left, int in_right){
+BinaryTreeNode* BinaryTreeNode::buildTreeByTwoSeq(vector<int> &preSeq, vector<int> &inSeq, int pre_left, int pre_right, int in_left, int in_right){
     if(pre_left > pre_right){
         return NULL;
     }
