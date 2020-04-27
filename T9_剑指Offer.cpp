@@ -3,6 +3,14 @@
 #include <queue>
 using namespace std;
 //写一个函数，输入n求斐波那契数列的第n项
+//还有一个写法
+/*
+|fn fn-1|       = 1 1 (n-1)次方
+|fn-1 fn-2|     = 1 0
+//乘方性质
+a^n = a^n/2 * a^n/2
+a^n = a^(n-1)/2 * a^(n-1)/2
+*/
 class Solution{
 public:
     long long Fibonacci(unsigned int n){
