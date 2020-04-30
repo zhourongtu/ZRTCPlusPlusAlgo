@@ -1,8 +1,9 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 #include <algorithm>
 #include <map>
 using namespace std;
+//字符串除法循环小数问题
 class Solution{
 public: 
     void convert(int a, int b){
