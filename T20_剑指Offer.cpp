@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <vector>
 using namespace std;
 /*
@@ -39,8 +39,8 @@ public:
         for(i = start + rows - 2; i > start; i--){
             cout << nums[i][j] << "\t";
         }
-        --rows;
-        --columns;
+        rows -= 2;
+        columns -= 2;
     }
 };
 int main()

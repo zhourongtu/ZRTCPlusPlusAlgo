@@ -58,7 +58,9 @@
         "xtree": "cpp",
         "bubble_sort.h": "c",
         "random": "cpp",
-        "ctime": "cpp"
+        "ctime": "cpp",
+        "optional": "cpp",
+        "string_view": "cpp"
     },
     "files.encoding": "utf8",
     "C_Cpp.errorSquiggles": "Disabled"
