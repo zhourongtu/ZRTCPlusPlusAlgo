@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <vector>
 using namespace std;
@@ -48,7 +48,8 @@ public:
             return;}
         else{
             nowSum += pRoot->m_nValue;
-            if(nowSum > expectedSum){;}
+            if(nowSum > expectedSum){
+                return ;}
             else if(nowSum == expectedSum){
                 tempPath.push_back(pRoot->m_nValue);
                 Path.push_back(tempPath);
@@ -57,6 +58,8 @@ public:
                 tempPath.push_back(pRoot->m_nValue);
                 getPath(pRoot->m_pLeft, nowSum, expectedSum);
                 getPath(pRoot->m_pRight, nowSum, expectedSum);
+                tempPath.pop_back();
+            
             }
         }
         return;
