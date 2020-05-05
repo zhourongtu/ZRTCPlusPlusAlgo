@@ -1,41 +1,45 @@
 ﻿#include <iostream>
 #include <cmath>
 #include <vector>
-
+#include<algorithm>
 using namespace std;
 
-struct ListNode{
-    int data;
-    ListNode *next = NULL;
-};
-/*判断链表是否成环*/
+/*请在这里输入这个程序的功能或者作用*/
 class Solution{
 public:
-    bool JudgeCircle(ListNode *list){
-        if(list == NULL || list->next == NULL)return false;
-        if(list->next == list)return true;
-        ListNode *p_slow, *p_fast;
-        p_slow = p_fast = list;
-        while(p_fast){
-            //快的走两步
-            p_fast = p_fast->next;
-            if(p_fast == NULL || p_fast->next == NULL)return false;
-            p_fast = p_fast->next;
-            //慢的走一步
-            p_slow = p_slow->next;
-            if(p_fast == p_slow){
-                return true;
+    void quickSort(std::vector<int> nums){
+        Partition(nums, 0, nums.size()-1);
+    }
+    int getPivot(std::vector<int> &nums, int start, int end){
+        return nums[end];
+    }
+    void Partition(std::vector<int> &nums, int start, int end){
+        if(start <= end)return;
+        int i = start, j = end-1;
+        int pivot = getPivot(nums, start, end);//最后一个数做枢轴量
+        while(i < j){
+            //i指向比pivot大
+            while(nums[i] < pivot){
+                i++;
             }
+            //j指向比pivot小
+            while(nums[j] > pivot){
+                j--;
+            }
+            if(i<j){
+                swap(nums[i], nums[j]);
+            }else break;
         }
-        return false;
+        swap(nums[i], nums[end]);
+        Partition(nums, start, i-1);
+        Partition(nums, i+1, end);
     }
 };
 int main()
 {
-    ListNode *p = new ListNode; p->data = 1;
-    p->next = new ListNode; p->next->data = 2;
-    p->next->next = new ListNode;
     Solution a;
-    cout << "成环结果：" << a.JudgeCircle(p) << endl;
+    vector<int> nums = {2,4,6,23234,32,526,1,2};
+    a.quickSort(nums);
+    for_each(nums.begin(), nums.end(), [](int &a){cout << a << '\t';});
     return 0;
 }
