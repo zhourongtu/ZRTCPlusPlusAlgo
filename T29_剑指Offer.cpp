@@ -50,11 +50,29 @@ public:
         nums[i] = temp;
         return i;
     }
+
+    int solve2(std::vector<int> &nums){
+        if(nums.size() == 0)return -1;
+        int count = 0;
+        int number = 1;
+        int result = nums[0];
+        for(int i=1; i<nums.size(); ++i){
+            if(count == 0){
+                result = nums[i];
+                count = 1;
+            }else if(nums[i] == result){
+                count++;
+            }else{
+                count--;
+            }
+        }
+        return result;
+    }
 };
 int main()
 {
     vector<int> nums = {1, 2, 3, 2, 2, 2, 5, 4, 2};
     Solution a;
-    cout << a.MoreThanHalfNum(nums);
+    cout << a.solve2(nums);
     return 0;
 }
