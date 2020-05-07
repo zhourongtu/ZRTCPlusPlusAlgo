@@ -3,6 +3,11 @@
 #include <string>
 #include <algorithm>
 using namespace std;
+/*
+index其实代表剩余个数index+1或者前index+1个
+Problem(index, target):
+    只有前index+1个时，能够凑到S的个数。
+*/
 class Solution{
 public:
 //nums为数据，index为当前处理到的下标，S为目标数
