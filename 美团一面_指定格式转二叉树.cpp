@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <vector>
 #include <string>
@@ -58,10 +58,7 @@ void BFS(Node *root);
 int main()
 {
     ifstream f;
-    f.open("二叉树数据.txt");
-    if(!f){
-        cout << "文件打开失败";
-    }
+    f.open("ConvertToBinaryTree.txt");
     Node *b;
     Solution a;
     b = a.ConvertToTree(f);
