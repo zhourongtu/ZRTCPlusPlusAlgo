@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <vector>
 
@@ -15,7 +15,7 @@ int main()
 {
     vector<int> w = {5, 4, 10};
     vector<int> v = {6, 3, 9};
-    vector<int> c = {-1, 1, 2};
+    vector<int> c = {1, 2, -1};
     //用C的数量解决背包问题    
     int W = 20;
     vector<int> f(W+1, 0);
@@ -41,5 +41,6 @@ int main()
         }
         
     }
+    cout << f[W];
     return 0;
 }
