@@ -67,8 +67,11 @@ int main()
     BFS(b);
     return 0;
 }
+//添加换行机制
 void BFS(Node *root){
     queue<Node *> q;
+    Node *nlast;
+    Node *last = root;
     q.push(root);
     while(!q.empty()){
         Node *temp = q.front();
@@ -76,9 +79,15 @@ void BFS(Node *root){
         cout << temp->data << '\t';
         if(temp->_left){
             q.push(temp->_left);
+            nlast = temp->_left;
         }
         if(temp->_right){
             q.push(temp->_right);
+            nlast = temp->_right;
+        }
+        if(temp == last){
+            cout << endl;
+            last = nlast;
         }
     }
     return;
