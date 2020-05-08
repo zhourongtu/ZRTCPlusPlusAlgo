@@ -8,6 +8,10 @@ using namespace std;
 
 /*
 将特定格式的字符串，转换成二叉树
+1.从上往下的顺序，本质是一棵二叉树的中序遍历。
+2.通过父子树能够判断左右子树的大小。
+
+结论：需要进行修改和调整
 */
 struct Node{
     string data;
@@ -25,18 +29,21 @@ public:
         while(getline(f, s)){
             data.push_back(s);
         }
-        return buildTree(data, 0, 0);
+        return buildTree(data, 0, 0, data.size());
     }
 
     //用index 指示
-    Node* buildTree(vector<string> &data, int root_pos, int index){
+    //代码出了Bug。左子树和右子树没有划分一个范围。
+    //数据，根节点位置，此时index开始为根节点的数据。子树的index为\t
+    Node* buildTree(vector<string> &data, int root_pos, int index, int length){
+        if(length <= 0) return NULL;
         string str = data[root_pos].substr(index);
         Node *result = new Node;
         result->data = str;
         int root_l_pos, root_r_pos;
-        root_l_pos = root_pos + 1;
         int count = 0;
-        for(int i=root_l_pos; i<data.size(); i++){
+        root_l_pos = root_pos + 1;
+        for(int i=root_pos + 1; i < root_pos + length; i++){
             if(data[i].size() > index+1 && data[i][index] == '\t' && data[i][index+1] != '\t'){
                 count++;
                 root_r_pos = i;
@@ -45,9 +52,15 @@ public:
         if(count == 0){
             return result;
         }else{
-            result->_left = buildTree(data, root_l_pos, index+1);
+            if(count == 1){
+                int left_length = length - 1;
+                result->_left = buildTree(data, root_l_pos, index+1, left_length);
+            }
             if(count == 2){
-                result->_right = buildTree(data, root_r_pos, index+1);
+                int left_length = root_r_pos - root_pos - 1;
+                result->_left = buildTree(data, root_l_pos, index+1, left_length);
+                int right_length = length - 1 - left_length;
+                result->_right = buildTree(data, root_r_pos, index+1, right_length);
             }
         }
         return result;
