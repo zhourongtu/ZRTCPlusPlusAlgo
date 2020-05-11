@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <vector>
 
@@ -7,6 +7,11 @@ using namespace std;
 /*
 从1~n整数中1出现的次数
 ：排列组合
+与PAT49联动：Counting Ones。
+那个更简洁：这里是以字符串描述的，那个以数字描述
+答案：以单个数字递归描述的。
+    第一个数字>1,1,0。
+    左边一次只处理一个数。
 */
 class Solution{
 public:

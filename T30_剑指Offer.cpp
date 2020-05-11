@@ -12,7 +12,7 @@ public:
     void GetLeastNumbers(std::vector<int> &nums, int k){
         int start = 0;
         int end = nums.size()-1;
-        int index = Partition(nums, start, end);
+        int index = Partition(nums, start, end);//地址
         while(index != k-1){
             if(index > k-1){
                 end = index - 1;
