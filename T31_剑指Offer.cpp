@@ -4,7 +4,7 @@
 #include <climits>
 using namespace std;
 
-/*请在这里输入这个程序的功能或者作用*/
+/*最大子序列和*/
 class Solution{
 public:
     int FindGreatestSumOfSubArray(int *pData, int nLength){
