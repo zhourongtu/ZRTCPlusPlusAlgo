@@ -220,7 +220,11 @@ void RBTree<K, V>::_InOrder(RBTreeNode<K, V>* root)
 	if (root == NULL)
 		return;
 	_InOrder(root->_left);
-	cout << root->_key << " ";
+	string a = root->_color==RED ? "RED":"BLACK" ;
+	std::cout << "key : " << root->_key << " " << " value : " << root->_value << "  Color:" << a; 
+	if(root->_parent)std::cout<<"   parent_key : " << root->_parent->_key;
+	std::cout << std::endl;
+	// std::cout << "|color:" << a << "|";
 	_InOrder(root->_right);
 
 }
