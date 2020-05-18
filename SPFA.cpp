@@ -2,12 +2,11 @@
 #include <cmath>
 #include <vector>
 #include <algorithm>
-
+#include <queue>
 using namespace std;
 
 /*
 Bellman_Ford算法
-注意：这里是有向图
 ****简单证明****
 最短路径树。最短路径树的长度不会超过V（如果存在最短路径的话）
 
@@ -17,8 +16,8 @@ Bellman_Ford算法
 4 4 0
 0 1 2
 1 2 3
-2 3 -1
-0 3 5
+1 3 5
+2 3 1
 */
 struct node{
     int v;
@@ -26,29 +25,32 @@ struct node{
 };
 vector<vector<node>> G;
 vector<int> dis;
-vector<int> visit;
+vector<int> inq;
+vector<int> num;//顶点的入队次数
 int N, M, Start;
-bool Bellman_Ford(int a){
-    fill(visit.begin(), visit.end(), 0);
+bool SPFA(int a){
+    fill(inq.begin(), inq.end(), 0);
+    fill(num.begin(), num.end(), 0);
     fill(dis.begin(), dis.end(), 0x7FFFFFFF);
     dis[a] = 0;
-    for(int k=0; k<G.size()-1; k++){
-        for(int i=0; i<G.size(); i++){
-            for(int j=0; j<G[i].size(); j++){
-                int des = G[i][j].v, l = G[i][j].dis;
-                if(dis[i] + l < dis[des]){
-                    dis[des] = dis[i] + l;
+    queue<int> q;
+    q.push(a);
+    inq[a] = true;
+    num[a]++;
+    while(!q.empty()){
+        int u = q.front();
+        q.pop();
+        inq[u] = false;
+        for(int j=0; j<G[u].size(); j++){
+            int v = G[u][j].v, l = G[u][j].dis;
+            if(dis[u] + l < dis[v]){
+                dis[v] = dis[u] + l;
+                if(inq[v] == false){
+                    q.push(v);
+                    num[v]++;
+                    inq[v] = true;
+                    if(num[v] >= G.size())return false;//到达负环
                 }
-            }
-        }
-    }
-    //判断负环
-    for(int i=0; i<G.size(); i++){
-        for(int j=0; j<G[i].size(); j++){
-            int des = G[i][j].v;
-            int l = G[i][j].dis;
-            if(dis[i] + l < dis[des]){
-                return false;
             }
         }
     }
@@ -59,15 +61,15 @@ int main()
     cin >> N >> M >> Start;
     G.resize(N);
     dis.resize(N);
-    visit.resize(N);
+    inq.resize(N);
+    num.resize(N);
 
     for(int i=0; i<M; i++){
         int a, b, w;
         cin >> a >> b >> w;
         G[a].push_back({b, w});
-        // G[b].push_back({a, w});
     }
-    cout << Bellman_Ford(Start);
+    cout << SPFA(Start);
     // for_each(dis.begin(), dis.end(), [](int a){cout << a << '\t';});
     return 0;
 }
