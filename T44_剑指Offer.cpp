@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <vector>
 #include <algorithm>
@@ -47,7 +47,15 @@ public:
 int main()
 {
     Solution s;
-    vector<int> nums = {1, 2, 3, 4, 5};
-    cout << s.Judge_series(nums);
+    vector<int> nums0 = {7, 2, 3, 4, 5};// 不可以
+    vector<int> nums1 = {0, 2, 3, 4, 5};// 可以
+    vector<int> nums2 = {6, 2, 3, 4, 5};// 可以
+    vector<int> nums3 = {0, 0, 3, 7, 5};// 可以
+    vector<int> nums4 = {0, 0, 3, 7, 6};// 可以
+    cout << s.Judge_series(nums0);
+    cout << s.Judge_series(nums1);
+    cout << s.Judge_series(nums2);
+    cout << s.Judge_series(nums3);
+    cout << s.Judge_series(nums4);
     return 0;
 }
