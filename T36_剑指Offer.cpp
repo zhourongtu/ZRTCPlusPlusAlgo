@@ -20,10 +20,10 @@ public:
     int _MergeAndCount(vector<int> &nums, int start1, int end1, int start2, int end2, vector<int> &together){
         //因为归并的左右最多差1
         int count = 0;
-        auto p1 = end1; auto p2 = end2;
-        int p3 = (end1-start1+1) + (end2 - start2+1) - 1;
+        auto p1 = end1; auto p2 = end2; // 一个指向最左边的最大，一个指向最右边的最大
+        int p3 = (end1-start1+1) + (end2-start2+1) - 1; //归并到最后一项的位置。
         while(p3 >= 0 && p1 >= start1 && p2 >= start2){
-            if(nums[p1] <= nums[p2]){
+            if(nums[p1] <= nums[p2]){ // 正常小
                 together[p3] = nums[p2];
                 p2--; p3--;
             }else if(nums[p1] > nums[p2]){//逆序数

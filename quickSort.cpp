@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cmath>
 #include <vector>
+#include <stdexcept>
 #include<algorithm>
 using namespace std;
 
@@ -17,6 +18,7 @@ public:
         Partition(nums, 0, nums.size()-1);
     }
     //两边移动方法*************************************
+    // 这里已经是quickSort了。
     void Partition(std::vector<int> &nums, int start, int end){
         if(start >= end)return;
         int i = start, j = end;
@@ -53,7 +55,8 @@ public:
     //单边移动方法
     int Partition2(std::vector<int> &data, int start, int end){
         if(data.size() == 0 || start < 0 || end >= data.size())
-            throw new std::exception("Invalid Parameters");
+            return -1;
+            // throw new std::exception("Invalid Parameters");
         int index = start;//选择
         swap(data[index], data[end]);
         int small = start - 1;
@@ -66,14 +69,15 @@ public:
         }
         ++small;
         swap(data[small], data[end]);
-        return samll;
+        return small;
     }
 };
 int main()
 {
     Solution a;
     vector<int> nums = {2,13124,2345235,56474,34,3,3,2,3,221,123,2, 3};
-    a.quickSort(nums);
+    // a.quickSort(nums);
+    a.QuickSort(nums, 0, nums.size()-1);
     for_each(nums.begin(), nums.end(), [](int &a){cout << a << '\t';});
     return 0;
 }
