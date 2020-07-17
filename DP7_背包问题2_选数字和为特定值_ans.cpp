@@ -2,6 +2,8 @@
 #include <vector>
 #include <algorithm>
 using namespace std;
+// 这里只考虑次数，没考虑集合。
+
 class Solution{
 public:
 int rec_subset(vector<int> arr, int i, int s);
