@@ -26,20 +26,20 @@ public:
                 flag = 0; break;
             }else if(nums[i] == start+1)
             {
-                ;
+                ;// 继续判断
             }
-            else if(nums[i] == start+2){
+            else if(nums[i] == start+2){ // 跳过一个
                 if(count)count--;
                 else{
                     flag = 0; break;
                 }
-            }else if(nums[i] == start+3){
+            }else if(nums[i] == start+3){ //跳过两个
                 if(count == 2)count = 0;
                 else{
                     flag = 0; break;
                 }
             }
-            start = nums[i];
+            start = nums[i]; // 连续值更新
         }
         return flag;
     }

@@ -17,18 +17,19 @@ int main()
 {
     //1.次数一共有6^n次方
     //2.一个数的次数 = 前6个数
+    // 按次数分析骰子。
     int n = 4;
     vector<int> v1(n*6+1);
     vector<int> v2(n*6+1);
     int num = pow(6, n);
     int flag = 0;
-    fill(v1.begin()+1, v1.begin()+1+6, 1);
-    for(int i=2; i<=n; i++){
-        if(flag==0)
+    fill(v1.begin()+1, v1.begin()+1+6, 1); // 第一个骰子，1~6的次数都是1.
+    for(int i=2; i<=n; i++){// 从2~n个骰子
+        if(flag==0)// flag = 0，时，数据存储在v1，推导v2。反之...
         {
             for(int j=i; j<=i*6; j++){
-                v2[j] = 0;
-                for(int k=j<=6?1:j-6; k<j; k++){
+                v2[j] = 0; // i~6*i的所有点数都会受到影响，与v1[]的旧情况相关
+                for(int k=j<=6?1:j-6; k<j; k++){ // j这个点数与前面六个有关，但如果小于6，则从1开始
                     v2[j] += v1[k];
                 }
             }   
