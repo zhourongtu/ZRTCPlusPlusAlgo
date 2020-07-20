@@ -13,6 +13,7 @@ public:
         int sum, carry;
         int now_bit = 1;
         int result = 0;
+        // 一位一位更新
         for(int i=0; i<31; i++){
             sum = (a&now_bit) ^ (b&now_bit) ^ carry_in;//低位
             carry_in = ((a&now_bit) & (b&now_bit) | (a&now_bit) & carry_in | carry_in & (b&now_bit)) << 1;//因为不存在cin
