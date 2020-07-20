@@ -4,39 +4,36 @@
 
 using namespace std;
 
-
-int GetNumOfBits1(int x)
-{
-    int count1 = 0;
-    while(x>0){
-        if(x & 1){
-            count1++;
+/*
+ * 有N件物品和一个容量为W的背包，放入第i件物品消耗的费用是Ci，得到的价值是Vi。
+ * 求解：将哪些物品装入背包使得总和价值最大
+ * 
+ * 似乎这里变成了无限物品问题
+*/
+class Solution{
+public:
+    // 如何解决这个问题
+    // 设dp[n]为容量为n的背包，能够取得的最大价值
+    int MaxValue_01(int W, int N, vector<int> &C, vector<int> &V)
+    {
+        vector<int> dp(N+1, 0);
+        for(int i=1; i<=W; i++){
+            for(int j=0; j<N; j++){// 观察第j件物品要不要
+                if(i >= C[j]){
+                    dp[i] = max(dp[i-1], dp[i-C[j]] + V[j]);
+                }
+            }
         }
-        x = x >> 1;
+        return dp[W];
     }
-    return count1;
-}
-
+};
 int main()
 {
-    // 本质上是考察x可以用的1的个数。
-    int T;
-    cin >> T;
-    long int x;
-    for(int i=0; i<T; i++)
-    {
-        cin >> x;
-        long int temp = 1;
-        int my_count1 = GetNumOfBits1(x);
-        if(my_count1 > 0 && my_count1 < 31){
-            cout << ((temp << my_count1)*2) << endl;
-        }else if(my_count1 == 31){
-            cout << (temp << 31) << endl;
-        }
-        else{
-            cout << 2 << endl;
-        }
-    }
-
+    int W = 10;
+    int N = 5;
+    vector<int> C = {3, 5, 7, 1, 8};
+    vector<int> V = {8, 2, 6, 2, 10};
+    Solution s;
+    cout << s.MaxValue_01(W, N, C, V);
     return 0;
 }

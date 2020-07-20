@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <cmath>
 #include <vector>
 
@@ -39,10 +39,8 @@ public:
         // 这里有一个特点。我们需要的是i-1时候的值，需要避免使用到i的值。
         vector<int> dp(W+1, 0);
         for(int i=1; i<=N; i++){ // N件物品，供选择
-            for(int j=W; j>=1; j--){ // 当有j为容量时，最大价值
-                if(j >= C[i]){
-                    dp[j] = max(dp[j], dp[j - C[i]] + V[i]); //能够购买物品i的情况下
-                }
+            for(int j=W;  j>=C[i]; j--){ // 当有j为容量时，最大价值
+                dp[j] = max(dp[j], dp[j - C[i]] + V[i]); //能够购买物品i的情况下
             }
         }
         return dp[W];
