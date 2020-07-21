@@ -60,8 +60,8 @@ int main()
 {
     int W = 1;
     int N = 5;
-    vector<int> C = {3, 5, 7, 1, 8};
-    vector<int> V = {8, 2, 6, 2, 10};
+    vector<int> C = {0, 3, 5, 7, 1, 8};
+    vector<int> V = {0, 8, 2, 6, 2, 10};
     Solution s;
     cout << s.MaxValue_01(W, N, C, V) << endl;
     cout << s.MaxValue_01_opt(W, N, C, V) << endl;
