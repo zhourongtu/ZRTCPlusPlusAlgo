@@ -13,10 +13,12 @@ using namespace std;
  * 
  * 
  * 出错点：B代表第B行的同学，没注意到。没时间改了。
+ * B-1的孩子是i。i代表第i个同学。
+ * 
+ * 特质：根节点可能不止一个。
 */
 
 int max_price = 0x80000000;
-vector<int> visit;
 vector<int> price;
 
 // 进入DFS时，给出带上这个结点的值。
@@ -38,22 +40,21 @@ int main()
     cin >> N;
     vector<vector<int>> G(N+1);
     price.resize(N+1);
-    visit.resize(N+1);
-    price[0] = 0;
-    fill(visit.begin(), visit.end(), 0);
+    price[0] = 0; // 根节点没有任何奖励。
     int A, B;
     int root;
     for(int i=1; i<=N; i++){
         cin >> A >> B;
         price[i] = A; // 拿到的奖励值
         if(B == 0){
-            root = i;
+            root = i;// 找到根。
+            G[B].push_back(i); 
         }else{
             G[B-1].push_back(i); // B发给i的
         }
     }
     // 进行DFS遍历
-    DFS(G, root, price[root]);
+    DFS(G, 0, 0);
     cout << max_price;
 }
 
