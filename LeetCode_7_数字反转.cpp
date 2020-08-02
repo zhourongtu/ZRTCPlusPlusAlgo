@@ -17,3 +17,22 @@ public:
         return reverse_a;
     }
 };
+
+// 数字方法
+class Solution {
+public:
+    int reverse(int x) {
+        long long reverse_a = 0;
+        int start = x < 0 ? 1 : 0;
+        long long tmpx = x;
+        if(start) tmpx *= -1;
+        do {
+            int res = tmpx%10;
+            tmpx /= 10;
+            reverse_a = reverse_a*10 + res;
+        } while(tmpx);
+        if(start == 1)reverse_a *= -1;
+        if(reverse_a > INT32_MAX || reverse_a < INT32_MIN)return 0;
+        return reverse_a;
+    }
+};
