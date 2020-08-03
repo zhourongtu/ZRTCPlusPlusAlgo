@@ -1,4 +1,6 @@
 
+https://www.cnblogs.com/xenny/p/9739600.html
+还有b站视频
 // lowbit。 lowbit(a) = a & ((~a) + 1)
 /*
     t[x] 保存以x为根的子树中叶结点值的和。
