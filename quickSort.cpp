@@ -31,9 +31,8 @@ public:
                 nums[i++] = nums[j];
             }
             //指向大的
-            for(; i<j && nums[i] <= temp; i++);{
-                nums[j--] = nums[i];
-            }
+            for(; i<j && nums[i] <= temp; i++);
+            nums[j--] = nums[i];
         }
         nums[i] = temp;
         Partition(nums, start, i-1);
@@ -77,7 +76,10 @@ int main()
     Solution a;
     vector<int> nums = {2,13124,2345235,56474,34,3,3,2,3,221,123,2, 3};
     // a.quickSort(nums);
-    a.QuickSort(nums, 0, nums.size()-1);
+    // a.QuickSort(nums, 0, nums.size()-1);
+    // for_each(nums.begin(), nums.end(), [](int &a){cout << a << '\t';});
+    a.Partition(nums, 0, nums.size()-1);
+    cout << endl;
     for_each(nums.begin(), nums.end(), [](int &a){cout << a << '\t';});
     return 0;
 }
