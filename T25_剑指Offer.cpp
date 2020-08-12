@@ -45,7 +45,7 @@ public:
                 -->右边
         */
         if(pRoot == NULL){
-            return;}
+            return;}    
         else{
             nowSum += pRoot->m_nValue;
             if(nowSum > expectedSum){
