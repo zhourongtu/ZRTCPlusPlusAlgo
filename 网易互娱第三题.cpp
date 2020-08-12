@@ -16,6 +16,10 @@ struct node{
     int my_time = -1;
 };
 
+map<int, node> my_map;
+
+int max_time = -1;
+int max_id = -1;
 
 vector<node> my_nodes;
 
@@ -35,6 +39,16 @@ int rec_deal(int start, int end)
             int result_time = rec_deal(start, i); // 计算start到i，这样一个值所代表的大小
             my_nodes[start].my_time = result_time;
             my_nodes[i].my_time = result_time;
+            if(result_time >= max_time){
+                if(result_time > max_time){
+                    max_time = result_time;
+                    max_id = my_nodes[start].e;
+                }else{
+                    if(my_nodes[start].e < max_id){
+                        max_id = my_nodes[start].e;
+                    }
+                }
+            }
             // solved_time = solved_time - result_time; // 减去下一层子事件的时间
             solved_time = solved_time - (my_nodes[i].t - my_nodes[start].t); // 减去下一层子事件的时间
             i++;
@@ -55,6 +69,7 @@ int main()
     int T;
     cin >> T;
     for(int i=0; i<T; i++){
+        my_map.clear();
         my_nodes.clear();
         int N;
         cin >> N;
@@ -73,14 +88,24 @@ int main()
                 int result_time = rec_deal(start, i); // 计算start到i，这样一个值所代表的大小
                 my_nodes[start].my_time = result_time;
                 my_nodes[i].my_time = result_time;
+                if(result_time >= max_time){
+                    if(result_time > max_time){
+                        max_time = result_time;
+                        max_id = my_nodes[start].e;
+                    }else{
+                        if(my_nodes[start].e < max_id){
+                            max_id = my_nodes[start].e;
+                        }
+                    }
+                }
                 i++;
                 if(i >= N)break;
                 start = i;
                 start_id = my_nodes[i].e;
             }
         }
-        sort(my_nodes.begin(), my_nodes.end(), compare);
-        cout << my_nodes[0].e << endl;
+        // sort(my_nodes.begin(), my_nodes.end(), compare);
+        cout << max_id << endl;
     }
     return 0;
 }
