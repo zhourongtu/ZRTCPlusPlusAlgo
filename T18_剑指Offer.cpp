@@ -29,20 +29,35 @@ struct BinaryTreeNode{
     BinaryTreeNode* m_pRight = NULL;
 };
 
-class Solution{
+class Solution {
 public:
-    bool HasSubTree(BinaryTreeNode* pRoot1, BinaryTreeNode* pRoot2){
-        //如何判断？
-        if(pRoot1 == NULL && pRoot2 == NULL)return true;
-        else if(pRoot2 == NULL)return true;
-        else if(pRoot1 == NULL)return false;
-        if(pRoot1->m_nValue != pRoot2->m_nValue){
-            return HasSubTree(pRoot1->m_pLeft, pRoot2) || HasSubTree(pRoot1->m_pRight, pRoot2);
-        }else{
-            return (HasSubTree(pRoot1->m_pLeft, pRoot2->m_pLeft) && HasSubTree(pRoot1->m_pRight, pRoot2->m_pRight)) 
-            || HasSubTree(pRoot1->m_pLeft, pRoot2) || HasSubTree(pRoot1->m_pRight, pRoot2);
+    // 2是不是1的子结构
+    bool HasSubTree(BinaryTreeNode* pRoot1, BinaryTreeNode* pRoot2)
+    {
+        // 空树不是任意一个树的子结构-->如果2是空，则不可能是子结构，但是递归的条件下会考虑到结果。 
+        if(pRoot2 == NULL || pRoot1 == NULL) return false;
+        bool result = false;
+        // 以该点为开始，判断是否是子结构
+        if(pRoot1->m_nValue == pRoot2->m_nValue){
+            result = HasSubtreeCore(pRoot1, pRoot2);
         }
+        if(!result)result = HasSubTree(pRoot1->m_pLeft, pRoot2);
+        if(!result)result = HasSubTree(pRoot1->m_pRight, pRoot2);
+        
+        return result;
     }
+    
+    bool HasSubtreeCore(BinaryTreeNode* pRoot1, BinaryTreeNode* pRoot2){
+        // 情况1.pRoot1为空了
+        if(pRoot2 == NULL)return true;
+        if(pRoot1 == NULL)return false;
+        if(pRoot1->m_nValue != pRoot2->m_nValue){
+            return false;
+        }
+        return HasSubtreeCore(pRoot1->m_pLeft, pRoot2->m_pLeft)
+            && HasSubtreeCore(pRoot1->m_pRight, pRoot2->m_pRight);
+    }
+    
 };
 
 int main(){
@@ -56,7 +71,7 @@ int main(){
     pA->m_pRight = new BinaryTreeNode; pA->m_pRight->m_nValue = 7;
     pB = new BinaryTreeNode; pB->m_nValue = 8;
     pB->m_pLeft = new BinaryTreeNode; pB->m_pLeft->m_nValue = 9;
-    pB->m_pRight = new BinaryTreeNode pB->m_pRight->m_nValue = 2;
+    pB->m_pRight = new BinaryTreeNode; pB->m_pRight->m_nValue = 2;
     Solution result;
     std::cout << result.HasSubTree(pA, pB);
 }
