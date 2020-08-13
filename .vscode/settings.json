@@ -60,7 +60,8 @@
         "random": "cpp",
         "ctime": "cpp",
         "optional": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "functional": "cpp"
     },
     "files.encoding": "utf8",
     "C_Cpp.errorSquiggles": "Disabled"
