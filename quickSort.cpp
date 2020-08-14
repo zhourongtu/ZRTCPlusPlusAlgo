@@ -51,6 +51,7 @@ public:
             QuickSort(data, index+1, end);
         }
     }
+    INT32_MIN
     //单边移动方法
     int Partition2(std::vector<int> &data, int start, int end){
         if(data.size() == 0 || start < 0 || end >= data.size())
