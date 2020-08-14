@@ -12,6 +12,13 @@ class Solution{
 public:
     int LastRemaining(unsigned int n, unsigned int m)
     {
+        if(n < 1)return -1;
+        int now = 0;
+        for(int i=2; i<=n; i++){
+            now = (now + (m-1)%i + 1)%i;
+        }
+        return now;
+        /*
         if(n < 1 || m < 1)
             return -1;
         unsigned int i = 0;
@@ -38,6 +45,7 @@ public:
             }
         }
         return -1;
+        */
     }
 };
 int main()
