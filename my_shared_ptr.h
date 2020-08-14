@@ -74,7 +74,7 @@ smart_ptr<T>::smart_ptr(const smart_ptr& rhs)
 }
 
 template<typename T>
-smart_ptr<T>& smart_ptr<T>::operator = (const smart_ptr &rhs)
+smart_ptr<T>& smart_ptr<T>::operator= (const smart_ptr &rhs)
 {
     m_del = rhs.m_del;
     ++(*rhs.m_p_use_count);
