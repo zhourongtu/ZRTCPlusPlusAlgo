@@ -61,7 +61,16 @@
         "ctime": "cpp",
         "optional": "cpp",
         "string_view": "cpp",
-        "functional": "cpp"
+        "functional": "cpp",
+        "array": "cpp",
+        "atomic": "cpp",
+        "bit": "cpp",
+        "*.tcc": "cpp",
+        "clocale": "cpp",
+        "cstdarg": "cpp",
+        "cwctype": "cpp",
+        "unordered_map": "cpp",
+        "memory_resource": "cpp"
     },
     "files.encoding": "utf8",
     "C_Cpp.errorSquiggles": "Disabled"
