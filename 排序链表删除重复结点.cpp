@@ -51,6 +51,49 @@ public:
     }
 };
 
+
+
+class Solution {
+public:
+    ListNode* deleteRange(ListNode *start, ListNode *end){
+        if(start == NULL)return start;
+        ListNode *returnResult = end->next;
+        while(start != end){
+            ListNode *temp = start->next;
+            delete start;
+            start = temp;
+        }
+        delete end;
+        return returnResult;
+    }
+    
+    ListNode* deleteDuplication(ListNode*& pHead)
+    {
+        ListNode *vHead = new ListNode(-1);
+        vHead->next = pHead;
+        ListNode *pre = vHead, *cur = pHead;
+        while(cur){
+            if(cur->next && cur->val == cur->next->val){
+                cur = cur->next;
+                while(cur->next && cur->val == cur->next->val){
+                    cur = cur->next;
+                }
+                ListNode *temp = cur->next;
+                pre->next = deleteRange(pre->next, cur);
+                cur = temp;
+            }
+            else{
+                pre = cur;
+                cur = cur->next;
+            }
+        }
+        auto result = vHead->next;
+        delete vHead;
+        return result;
+    }
+};
+
+
 int main()
 {
 	ListNode *a = new ListNode(1);
