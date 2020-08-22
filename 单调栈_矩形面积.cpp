@@ -21,9 +21,11 @@ public:
         // 左边到右边，第一个小于自己的值。
         single_stack.push(0);
         for(int i=1; i<N; ++i){
+            // 如果更大-->入栈
             if(!single_stack.empty() && height[single_stack.top()] <= height[i]){
                 single_stack.push(i);
             }else{
+                // 如果栈内的都比它高-->栈内的，第一个比其矮的值，都是i
                 while(!single_stack.empty() && height[single_stack.top()] > height[i]){
                     rectangle_lower[single_stack.top()] = i;
                     single_stack.pop();
