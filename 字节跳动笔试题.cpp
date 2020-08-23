@@ -30,6 +30,6 @@ public:
 int main()
 {
     Solution s;
-    cout << s.get_closed_num("123432432423543676864653");
+    cout << s.get_closed_num("132");
     return 0;
 }
