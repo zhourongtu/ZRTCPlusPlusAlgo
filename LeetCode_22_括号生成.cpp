@@ -48,4 +48,4 @@ int main()
      auto result = s.generateParenthesis(3);
      for_each(result.begin(), result.end(), [](string a){cout << a << "\t";});
      return 0;
-}
+}   
