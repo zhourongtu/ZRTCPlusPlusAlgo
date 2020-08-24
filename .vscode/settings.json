@@ -70,7 +70,14 @@
         "cstdarg": "cpp",
         "cwctype": "cpp",
         "unordered_map": "cpp",
-        "memory_resource": "cpp"
+        "memory_resource": "cpp",
+        "any": "cpp",
+        "future": "cpp",
+        "shared_mutex": "cpp",
+        "thread": "cpp",
+        "regex": "cpp",
+        "valarray": "cpp",
+        "variant": "cpp"
     },
     "files.encoding": "utf8",
     "C_Cpp.errorSquiggles": "Disabled"
