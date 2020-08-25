@@ -1,4 +1,4 @@
-// 方法1：向前判断
+// 方法1：向前判断，是否某个点可以达。
 class Solution {
 public:
     bool canJump(vector<int>& nums) {
