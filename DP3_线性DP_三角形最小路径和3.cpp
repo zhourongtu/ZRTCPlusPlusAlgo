@@ -8,6 +8,8 @@ using namespace std;
 //   3 4
 //  6 5 7
 // 4 1 8 3
+
+// 不允许修改tri的值
 int minimalTotal(vector<vector<int> > &tri);
 int main()
 {

@@ -3,6 +3,8 @@
 #include <string>
 #include <algorithm>
 using namespace std;
+// dp1：以nums[i]为最后一个乘数能达到的最大正值
+// dp2：以nums[i]为最后一个乘数能达到的最小负值
 int main(){
     vector<int> num = {2, 3, -2, 4};
     vector<int> dp1(num.size()), dp2(num.size());
